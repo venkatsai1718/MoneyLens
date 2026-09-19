@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-snow text-ink antialiased font-sans;
+    font-feature-settings: 'tnum' 1, 'cv11' 1;
+  }
+
+  ::selection {
+    @apply bg-carbon/70 text-ink;
+  }
+
+  /* Buttons, links and other free-standing controls get a ring that hugs
+     their own box. Text inputs/selects are excluded here on purpose — they
+     live inside a field "shell" that already shows focus via its own
+     border/glow (see SliderInput, SelectInput), so a second independent
+     ring on the bare input would render as a stray box that doesn't line
+     up with the shell around it. */
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(32, 212, 154, 0.4);
+    border-radius: 0.5rem;
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    box-shadow: none;
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 999px;
+    background: #262626;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    margin-top: -6px;
+    border-radius: 999px;
+    background: #20d49a;
+    border: 3px solid #0a0a0a;
+    box-shadow: 0 0 0 1px #20d49a;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  input[type='range']:hover::-webkit-slider-thumb {
+    transform: scale(1.1);
+  }
+
+  input[type='range']::-moz-range-track {
+    height: 4px;
+    border-radius: 999px;
+    background: #262626;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 999px;
+    background: #20d49a;
+    border: 3px solid #0a0a0a;
+    box-shadow: 0 0 0 1px #20d49a;
+    cursor: pointer;
+  }
+
+  /* Hide number input spinners for a cleaner currency field */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 999px;
+  }
+
+  /* A subtle pseudo-3D lift for chart surfaces: on hover, the card tilts
+     slightly on its X axis (like it's tipping toward you) and scales up a
+     touch, backed by a deeper, warmer shadow that reinforces the sense of
+     it lifting off the page. Recharts renders flat SVG, so this is done at
+     the container level rather than faking 3D inside the chart itself —
+     kept subtle on purpose so data stays perfectly readable mid-hover. */
+  .chart-lift {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .chart-lift:hover {
+    transform: perspective(1200px) rotateX(1.5deg) scale(1.015);
+    box-shadow: 0 24px 48px -12px rgba(32, 212, 154, 0.3), 0 8px 20px -6px rgba(0, 0, 0, 0.55);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chart-lift,
+    .chart-lift:hover {
+      transform: none;
+      transition: none;
+    }
+  }
+}
