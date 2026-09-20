@@ -9,7 +9,7 @@ import { SectionHeading } from '../components/ui/SectionHeading'
 import { FAQ } from '../components/ui/FAQ'
 import { Reveal } from '../components/ui/Reveal'
 import { Aurora } from '../components/ui/Aurora'
-import { CollidingOrbs } from '../components/ui/CollidingOrbs'
+import { ChalkDoodles } from '../components/ui/ChalkDoodles'
 import { SummaryRow } from '../components/ui/SummaryRow'
 import { calculateSIP, calculateFD, calculateNPS } from '../calculations'
 import { formatINR } from '../utils/format'
@@ -36,7 +36,6 @@ const HOME_FAQS = [
   },
 ]
 
-
 export function Home() {
   const featured = FEATURED_KEYS.map((k) => CALCULATORS.find((c) => c.key === k)!).filter(Boolean)
 
@@ -52,60 +51,60 @@ export function Home() {
 
       {/* Hero + Calculator grid share one continuous animated background */}
       <div className="relative overflow-hidden">
-        <CollidingOrbs />
+        <ChalkDoodles />
         <Aurora className="opacity-70" />
 
         {/* Hero */}
         <section className="relative min-h-[88vh] flex items-center">
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 py-16 text-center w-full">
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-ink animate-fadeIn">See the Numbers Behind the Investment.</h1>
-          <p className="text-ink-muted text-base sm:text-lg mt-5 max-w-lg mx-auto leading-relaxed animate-fadeIn" style={{ animationDelay: '80ms' }}>
-            Enter your numbers and see the full picture — growth, returns, and how your money plays out over time.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8 animate-fadeIn" style={{ animationDelay: '160ms' }}>
-            <Link to="/resources" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto">
-                Explore Tools
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link to="/compare" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                Compare Investments
-              </Button>
-            </Link>
+          <div className="relative mx-auto max-w-4xl px-4 sm:px-6 py-16 text-center w-full">
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-ink animate-fadeIn">See the Numbers Behind the Investment.</h1>
+            <p className="text-ink-muted text-base sm:text-lg mt-5 max-w-lg mx-auto leading-relaxed animate-fadeIn" style={{ animationDelay: '80ms' }}>
+              Enter your numbers and see the full picture — growth, returns, and how your money plays out over time.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8 animate-fadeIn" style={{ animationDelay: '160ms' }}>
+              <Link to="/resources" className="w-full sm:w-auto">
+                <Button variant="primary" size="lg" className="w-full sm:w-auto">
+                  Explore Tools
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Link to="/compare" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  Compare Investments
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* Calculator grid — featured subset, link out to the rest */}
         <section id="calculators" className="relative scroll-mt-24 min-h-[80vh] flex flex-col justify-center mx-auto max-w-6xl px-4 sm:px-6 py-14">
-        <SectionHeading eyebrow="Calculators" title="Start with one of these" subtitle="Year-wise breakdown, real charts, CSV or PDF export — every calculator, same engine." align="center" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {featured.map((calc, i) => (
-            <Reveal key={calc.key} delayMs={(i % 3) * 70}>
-              <Link to={calc.route} className="group block h-full">
-                <Card className="h-full transition-all duration-200 hover:border-gunmetal hover:shadow-elevated hover:-translate-y-0.5">
-                  <CardBody>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-platinum text-ink-soft group-hover:bg-carbon group-hover:text-on-accent transition-colors">
-                      <calc.icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="text-[15px] font-semibold text-ink mt-4">{calc.name}</h3>
-                    <p className="text-sm text-ink-muted mt-1.5 leading-relaxed">{calc.description}</p>
-                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-ink mt-4 group-hover:gap-2 transition-all">
-                      Calculate <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </CardBody>
-                </Card>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-        <div className="text-center mt-8">
-          <Link to="/resources" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-soft hover:text-ink transition-colors">
-            View all 11 calculators <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
+          <SectionHeading eyebrow="Calculators" title="Start with one of these" subtitle="Year-wise breakdown, real charts, CSV or PDF export — every calculator, same engine." align="center" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {featured.map((calc, i) => (
+              <Reveal key={calc.key} delayMs={(i % 3) * 70}>
+                <Link to={calc.route} className="group block h-full">
+                  <Card className="h-full transition-all duration-200 hover:border-gunmetal hover:shadow-elevated hover:-translate-y-0.5">
+                    <CardBody>
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-platinum text-ink-soft group-hover:bg-carbon group-hover:text-on-accent transition-colors">
+                        <calc.icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-[15px] font-semibold text-ink mt-4">{calc.name}</h3>
+                      <p className="text-sm text-ink-muted mt-1.5 leading-relaxed">{calc.description}</p>
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-ink mt-4 group-hover:gap-2 transition-all">
+                        Calculate <ArrowRight className="h-3.5 w-3.5" />
+                      </span>
+                    </CardBody>
+                  </Card>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link to="/resources" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-soft hover:text-ink transition-colors">
+              View all 11 calculators <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
         </section>
       </div>
 

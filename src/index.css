@@ -65,6 +65,16 @@
     transform: scale(1.1);
   }
 
+  /* The thumb's own permanent ring (box-shadow above) doesn't change on
+     keyboard focus, so a Tab-only user gets no visible indication the
+     slider is focused at all — the global `input:focus-visible { box-shadow:
+     none }` rule (see *:focus-visible above) only resets the <input>
+     element's own shadow, not its pseudo-element thumb, so this is safe to
+     add without fighting that reset. */
+  input[type='range']:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px rgba(32, 212, 154, 0.45), 0 0 0 1px #20d49a;
+  }
+
   input[type='range']::-moz-range-track {
     height: 4px;
     border-radius: 999px;
@@ -79,6 +89,10 @@
     border: 3px solid #0a0a0a;
     box-shadow: 0 0 0 1px #20d49a;
     cursor: pointer;
+  }
+
+  input[type='range']:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 0 4px rgba(32, 212, 154, 0.45), 0 0 0 1px #20d49a;
   }
 
   /* Hide number input spinners for a cleaner currency field */

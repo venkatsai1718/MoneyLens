@@ -14,6 +14,7 @@ import { YearsInput } from '../components/ui/YearsInput'
 import { SelectInput } from '../components/ui/SelectInput'
 import { ComparisonChart } from '../charts/ComparisonChart'
 import { InvestedVsReturnsChart } from '../charts/InvestedVsReturnsChart'
+import { Aurora } from '../components/ui/Aurora'
 import { calculateSIP, calculateStepUpSIP, calculateLumpsum, calculateFD, calculateRD, compareInvestments } from '../calculations'
 import type { CompoundingFrequency } from '../calculations/fd'
 import type { CalculationResult, ComparisonScenario } from '../types/calculator'
@@ -233,14 +234,17 @@ export function Compare() {
         />
       </Helmet>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-10 sm:pt-14 pb-6">
-        <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2.5">Side-by-Side</p>
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink max-w-2xl">Compare Investments</h1>
-        <p className="text-ink-muted mt-3 text-[15px] leading-relaxed max-w-2xl">
-          Build multiple scenarios and see how they stack up — without any ranking or recommendation.
-        </p>
-        <div className="mt-5 rounded-xl border border-border-soft bg-platinum/40 px-4 py-3 text-xs text-ink-muted max-w-2xl">
-          MoneyLens does not rank or recommend any investment. The figures below reflect only the assumptions you've entered for each scenario.
+      <div className="relative overflow-hidden">
+        <Aurora className="opacity-60" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-10 sm:pt-14 pb-6">
+          <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2.5">Side-by-Side</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-ink max-w-2xl">Compare Investments</h1>
+          <p className="text-ink-muted mt-3 text-[15px] leading-relaxed max-w-2xl">
+            Build multiple scenarios and see how they stack up — without any ranking or recommendation.
+          </p>
+          <div className="mt-5 rounded-xl border border-border-soft bg-platinum/40 px-4 py-3 text-xs text-ink-muted max-w-2xl">
+            MoneyLens does not rank or recommend any investment. The figures below reflect only the assumptions you've entered for each scenario.
+          </div>
         </div>
       </div>
 

@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import clsx from 'clsx'
 import { CALCULATORS } from '../../data/calculators'
-import { Button } from '../ui/Button'
 import { LogoMark } from '../ui/LogoMark'
 
 export function Navbar() {
@@ -53,7 +52,7 @@ export function Navbar() {
           <span className="text-lg font-bold tracking-tight text-ink">MoneyLens</span>
         </Link>
 
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex flex-1 items-center justify-center gap-1">
           <div className="relative" ref={menuRef} onMouseEnter={openMenu} onMouseLeave={closeMenuSoon}>
             <button
               onClick={() => setCalcMenuOpen((v) => !v)}
@@ -111,15 +110,6 @@ export function Navbar() {
           </NavLink>
         </div>
 
-        <div className="hidden lg:block">
-          <Link to="/#calculators">
-            <Button variant="primary" size="md">
-              View Tools
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Button>
-          </Link>
-        </div>
-
         <button
           className="lg:hidden flex items-center justify-center h-10 w-10 rounded-lg text-ink"
           onClick={() => setMobileOpen((v) => !v)}
@@ -155,12 +145,6 @@ export function Navbar() {
                 Resources
               </Link>
             </div>
-            <Link to="/#calculators" className="block pt-2">
-              <Button variant="primary" size="md" className="w-full">
-                View Tools
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
-            </Link>
           </div>
         </div>
       )}

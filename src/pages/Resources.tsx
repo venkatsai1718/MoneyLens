@@ -8,6 +8,7 @@ import { EDU_TOPICS } from '../data/eduTopics'
 import { Card, CardBody } from '../components/ui/Card'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { Disclaimer } from '../components/ui/Disclaimer'
+import { Aurora } from '../components/ui/Aurora'
 
 export function Resources() {
   return (
@@ -20,9 +21,19 @@ export function Resources() {
         />
       </Helmet>
 
+      <div className="relative overflow-hidden">
+        <Aurora className="opacity-60" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-10 sm:pt-14 pb-6">
+          <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2.5">Learn</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-ink max-w-2xl">Resources</h1>
+          <p className="text-ink-muted mt-3 text-[15px] leading-relaxed max-w-2xl">
+            Plain-language explainers for every investment type MoneyLens supports — no jargon, no promises.
+          </p>
+        </div>
+      </div>
 
-      <div className="mt-8 mx-auto max-w-7xl px-4 sm:px-6 pb-20 space-y-14">
-        <div className="mt-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 pb-20 space-y-14">
+        <div>
           <SectionHeading title="Investment Calculators" subtitle="Jump straight into any calculator to see a full year-wise breakdown." as="h2" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {CALCULATORS.map((calc) => (
@@ -44,12 +55,8 @@ export function Resources() {
           </div>
         </div>
 
-        <div id="basics" className="mt-8 scroll-mt-24">
-          <SectionHeading
-            title="Investing Basics"
-            subtitle="A few concepts worth understanding before you invest."
-            as="h2"
-          />
+        <div id="basics" className="scroll-mt-24">
+          <SectionHeading title="Investing Basics" subtitle="A few concepts worth understanding before you invest." as="h2" />
 
           {/* Quick jump — a single centered, wrapping row, not a second column */}
           <div className="flex flex-wrap justify-center gap-2 mb-10">

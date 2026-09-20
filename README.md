@@ -30,3 +30,5 @@ npm test        # runs the calculation-engine test suite (Jest)
 ## Disclaimer
 
 All calculations are estimates based on user-entered assumptions. Expected returns are never guaranteed. This app is for educational and informational purposes and is not investment advice.
+
+

@@ -55,7 +55,7 @@ export function SliderInput({
   return (
     <div className="w-full">
       <div className="flex items-center justify-between gap-3 mb-2">
-        <label htmlFor={id} className="text-sm text-ink-soft">
+        <label htmlFor={id} className="text-sm font-medium text-ink-soft">
           {label} {optional && <span className="text-ink-muted">(optional)</span>}
         </label>
         <div
