@@ -84,7 +84,7 @@ echo
 
 # ── 4. Wait for the rollout ──────────────────────────────────────────────
 echo "==> Waiting for rollout"
-kubectl rollout status "deployment/${DEPLOYMENT_NAME}"
+kubectl rollout status "deployment/${DEPLOYMENT_NAME}" -n my-apps
 echo
 
 echo "================================================"

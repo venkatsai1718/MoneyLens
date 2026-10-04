@@ -1,7 +1,39 @@
+# -------------------------------------
+# 1. ExternalSecret for MoneyLens Application
+# -------------------------------------
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: moneylens-secrets
+  namespace: my-apps
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: aws-secrets-manager
+    kind: ClusterSecretStore
+  target:
+    name: moneylens-secrets   # <- the k8s Secret the deployment reads via envFrom
+    creationPolicy: Owner
+    template:
+      data:
+        USERNAME: "{{ .username }}"
+        API_KEY: "{{ .api_key }}"
+  data:
+    - secretKey: username
+      remoteRef: { key: moneylens/demo-secret, property: username }
+    - secretKey: api_key
+      remoteRef: { key: moneylens/demo-secret, property: api_key }
+
+---
+
+# -------------------------------------
+# 2. Deployment 
+# ---------------------------------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: moneylens-app
+  namespace: my-apps
   labels:
     app: moneylens
 spec:
@@ -41,11 +73,19 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 20
             failureThreshold: 3
+          envFrom:
+            - secretRef:
+                name: moneylens-secrets
 ---
+
+# -------------------------------------
+# 3. Service
+# ---------------------------------------
 apiVersion: v1
 kind: Service
 metadata:
   name: moneylens-service
+  namespace: my-apps
   labels:
     app: moneylens
 spec:
