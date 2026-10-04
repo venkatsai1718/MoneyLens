@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: moneylens-container
-          image: moneylens:latest
+          image: 029533636646.dkr.ecr.us-east-1.amazonaws.com/my_ecr:moneylens-latest
           ports:
             - name: http
               containerPort: 8000
@@ -55,4 +55,4 @@ spec:
     - name: http
       port: 80
       targetPort: http
-  type: ClusterIP
+  type: LoadBalancer
