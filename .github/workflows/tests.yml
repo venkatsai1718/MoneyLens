@@ -1,4 +1,4 @@
-name: Tests
+name: PR checks
 
 on:
   pull_request:
@@ -30,3 +30,38 @@ jobs:
       - run: npm test -- --watchAll=false
         env:
           CI: true
+
+  # Type-checks (tsc) and lints (ESLint) via CRA's build — things Jest doesn't catch.
+  # With CI=true, CRA also treats lint warnings as errors.
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24 # matches the Dockerfile
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+        env:
+          CI: true
+
+  # Builds the production image (npm ci + build + nginx stage) without pushing it.
+  docker-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
