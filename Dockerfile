@@ -1,7 +1,7 @@
 # --- Build stage ---
 # node:20 (not 14): react-router-dom@7 in this project requires Node >=20,
 # recharts requires >=18 — the app would not even npm install cleanly on 14.
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 WORKDIR /app
 
 # Install dependencies first, separately from the source copy, so this layer
