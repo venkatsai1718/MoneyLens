@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs when new commits are pushed to the same PR.
+concurrency:
+  group: tests-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24 # matches the Dockerfile
+          cache: npm
+
+      - run: npm ci
+
+      # CI=true makes react-scripts run once (no watch mode) and fail on any failing test.
+      - run: npm test -- --watchAll=false
+        env:
+          CI: true
